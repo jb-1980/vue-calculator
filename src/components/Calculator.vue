@@ -84,7 +84,10 @@ export default {
 
         case "=":
           try {
-            this.expression = String(eval(this.expression));
+            let evaluated = String(eval(this.expression));
+            // truncate expression to 13 characters to keep in view port
+            // of calculator screen
+            this.expression = evaluated.substring(0, 20);
           } catch (e) {
             if (e instanceof SyntaxError) {
               this.expression = "Syntax Error";
@@ -104,7 +107,7 @@ export default {
 
 <style>
 .calculator {
-  width: 200px;
+  width: 320px;
   height: 400px;
   background: salmon;
   border: thick solid brown;
@@ -133,6 +136,8 @@ export default {
   font-size: 30px;
   line-height: 30px;
   font-family: "Digital-7 Mono";
+  padding: 0 10px;
+  overflow: hidden;
 }
 
 .button {
